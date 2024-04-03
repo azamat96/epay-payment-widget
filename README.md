@@ -3,8 +3,6 @@
 
 # React Component of Epay Payment Widget
 
-***
-
 Official documentation is on [Epay halyk](https://epayment.kz/docs). This is a wrapper component for reactJS.
 
 ## How to install
