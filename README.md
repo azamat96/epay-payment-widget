@@ -1,17 +1,22 @@
 
-![Alt text](./public/epay_widget.png) 
+![Epay Widget](./public/epay_widget.png) 
 
-# React Component of Epay Payment Widget
+# EpayPaymentWidget
+![react version](https://img.shields.io/badge/react-version_16.8-blue) ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![npm size](https://img.shields.io/bundlephobia/min/epay-payment-widget/1.0)
 
-Official documentation is on [Epay halyk](https://epayment.kz/docs). This is a wrapper component for reactJS.
+React Component of [Epay](https://epayment.kz/) Payment Widget
 
-## How to install
+## Documentation
 
-Run this command:
+Official documentation is on [Epay halyk](https://epayment.kz/docs). This is a wrapper component for [react](https://github.com/facebook/react).
 
-### `npm i epay-payment-widget`
+## Installation
 
-How to use it in project:
+```shell
+npm i epay-payment-widget
+```
+
+## Example
 
 ```typescript jsx
 import {EpayPaymentWidget} from 'epay-payment-widget';
@@ -30,7 +35,7 @@ const [showWidget, setShowWidget] = useState(false);
     devMode />
 ```
 
-## Props
+### Props
 
 | Property      | Description                                                                                                                                                    | Type     | Required                                   | Default                            |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|--------------------------------------------|------------------------------------|
@@ -44,7 +49,7 @@ const [showWidget, setShowWidget] = useState(false);
 | `devMode` | There is two modes: dev and prod. If you use `devMode` you will work in a development environtment                                                             | boolean  | no                                         | false                              |
 | `paymentData` | List of payment parameters from [official documentation](https://epayment.kz/docs/platezhnyi-vidzhet) | object | no, if you specify this object it will be priority | `{}`                               |
 
-## paymentData
+### paymentData
 
 If you specify the properties of this object, it will be priority than above props
 
@@ -64,3 +69,7 @@ If you specify the properties of this object, it will be priority than above pro
 | name            | 	имя плательщика, только на латинице (не обязательно)                                                                                                                                                                                   | string | no | |
 | currency        | 	Валюта                                                                                                                                                                                                                                 | string | no | `KZT` |
 | data            | 	дополнительное поле транслируется в отчете при заполнении (необязательно)                                                                                                                                                              | string | no | |
+
+## License
+
+Widget is [MIT licensed](./LICENSE).
