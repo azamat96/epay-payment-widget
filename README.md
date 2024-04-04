@@ -1,5 +1,5 @@
 
-![Alt text](/public/epay_widget.png) 
+![Alt text](./public/epay_widget.png) 
 
 # React Component of Epay Payment Widget
 

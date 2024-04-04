@@ -13,7 +13,14 @@ export async function postData(url: string, data: any) {
     return response.json();
 }
 
-export function createPaymentObject(auth: any, invoiceId: string, amount: number, currency: string = 'KZT', data: PaymentData = {}) {
+export function createPaymentObject(
+    auth: any,
+    invoiceId: string,
+    amount: number,
+    terminalId: string,
+    currency: string = 'KZT',
+    data: PaymentData = {}
+) {
     const dummyObject = {
         backLink: "https://example.kz/success.html",
         failureBackLink: "https://example.kz/failure.html",
@@ -22,7 +29,6 @@ export function createPaymentObject(auth: any, invoiceId: string, amount: number
         language: "rus",
         description: "Оплата в интернет магазине",
         accountId: "testuser1",
-        terminal: '67e34d63-102f-4bd1-898e-370781d0074d',
         name: "Arman Ali",
         data: "{\"statement\":{\"name\":\"Arman     Ali\",\"invoiceID\":\"80000016\"}}"
     };
@@ -33,6 +39,7 @@ export function createPaymentObject(auth: any, invoiceId: string, amount: number
         invoiceId,
         invoiceIdAlt: invoiceId,
         amount,
+        terminal: terminalId,
         currency
     }
 }

@@ -47,7 +47,7 @@ export const EpayPaymentWidget = (
     postData(devMode ? oauthDevURl : oauthProdURl, oauthParams)
         .then((data) => {
                 halyk.showPaymentWidget(
-                    createPaymentObject(data, invoice, amount, currency, paymentData),
+                    createPaymentObject(data, invoice, amount, terminalId, currency, paymentData),
                     onWidgetClose ?? function () {}
                 );
             },

@@ -1,7 +1,7 @@
 {
   "name": "epay-payment-widget",
-  "version": "1.0.3",
-  "description": "",
+  "version": "1.0.4",
+  "description": "Payment widget of epay, Halyk bank's online payment service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "tsup --dts"
   },
   "author": "Taizhan Azamat <taizhanaza@halykbank.kz> @azamat96",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@ladle/react": "^4.0.3",
     "@types/react": "^18.2.73",
