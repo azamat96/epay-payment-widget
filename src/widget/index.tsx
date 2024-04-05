@@ -5,7 +5,7 @@ import {EpayPaymentWidgetProps} from "./contracts";
 
 declare var halyk: any
 
-export const EpayPaymentWidget = (
+const EpayPaymentWidget = (
     {
         visible,
         clientId,
@@ -16,7 +16,8 @@ export const EpayPaymentWidget = (
         paymentData = {},
         terminalId,
         onWidgetClose,
-        devMode = false
+        devMode = false,
+        oauthData
     }: EpayPaymentWidgetProps) => {
 
     useEffect(() => {
@@ -33,27 +34,33 @@ export const EpayPaymentWidget = (
     const invoice = (paymentData?.invoiceId || invoiceId) ?? '' + new Date().valueOf()
     amount = paymentData?.amount ?? amount
     terminalId = paymentData?.terminal ?? terminalId
-
-    const oauthParams = {
-        grant_type: oauthGrantType,
-        scope: scope,
-        client_id: clientId,
-        client_secret: clientSecret,
-        invoiceID: invoiceId,
-        amount: amount,
-        currency: currency,
-        terminal: terminalId
+    const showPaymentWidget = (dataAuth: any) => {
+        halyk.showPaymentWidget(
+            createPaymentObject(dataAuth, invoice, amount, terminalId, currency, paymentData),
+            onWidgetClose ?? function () {}
+        );
     }
-    postData(devMode ? oauthDevURl : oauthProdURl, oauthParams)
-        .then((data) => {
-                halyk.showPaymentWidget(
-                    createPaymentObject(data, invoice, amount, terminalId, currency, paymentData),
-                    onWidgetClose ?? function () {}
-                );
-            },
-            () => {
-                alert("Authorization request failed");
-            });
+
+    if (clientId && clientSecret) {
+        const oauthParams = {
+            grant_type: oauthGrantType,
+            scope: scope,
+            client_id: clientId,
+            client_secret: clientSecret,
+            invoiceID: invoiceId,
+            amount: amount,
+            currency: currency,
+            terminal: terminalId
+        }
+        postData(devMode ? oauthDevURl : oauthProdURl, oauthParams).then(
+            (dataAuth: any) => showPaymentWidget(dataAuth),
+            () => alert("Authorization request failed")
+        );
+    } else {
+        showPaymentWidget(oauthData)
+    }
 
     return (<></>)
 }
+
+export default EpayPaymentWidget

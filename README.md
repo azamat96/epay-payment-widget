@@ -1,5 +1,5 @@
 
-![Epay Widget](./public/epay_widget.png) 
+![Epay Widget](https://epayment.kz/images/epay.png) 
 
 # EpayPaymentWidget
 ![react version](https://img.shields.io/badge/react-version_16.8-blue) ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![npm size](https://img.shields.io/bundlephobia/min/epay-payment-widget/1.0)
@@ -27,6 +27,7 @@ const [showWidget, setShowWidget] = useState(false);
     visible={showWidget}
     clientId='CLIENT_ID'
     clientSecret='CLIENT_SECRET'
+    // oauthData={{}}
     terminalId='TERMINAL_ID'
     amount={500}
     paymentData={data}
@@ -37,17 +38,20 @@ const [showWidget, setShowWidget] = useState(false);
 
 ### Props
 
-| Property      | Description                                                                                                                                                    | Type     | Required                                   | Default                            |
-|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|--------------------------------------------|------------------------------------|
-| `visible`    | Open/close widget                                                                                                                                              | boolean  | yes                                        | false                              |
-| `clientId` | Your client id from epay                                                                                                                                       | string   | yes                                        |
-| `clientSecret` | Your client secret from epay                                                                                                                                   | string   | yes                                        | 
-| `terminalId` | Your terminal id from epay, which terminal you want to use                                                                                                     | string   | yes                                        |
-| `amount` | amount of money, cost                                                                                                                                          | number   | yes                                        | 
-| `invoiceId` | Your invoice id                                                                                                                                                | string   | no                                         | `'' + new Date().valueOf()`        |
-| `onWidgetClose` | callback, which calls when widget closes. Accepts as a parameter object `{success: boolean}`.  Weather of `success` based on the results of payment processing | function | no                                         | `function ({success: boolean}) {}` |
-| `devMode` | There is two modes: dev and prod. If you use `devMode` you will work in a development environtment                                                             | boolean  | no                                         | false                              |
-| `paymentData` | List of payment parameters from [official documentation](https://epayment.kz/docs/platezhnyi-vidzhet) | object | no, if you specify this object it will be priority | `{}`                               |
+| Property        | Description                                                                                                                                                    | Type     | Required                                                                          | Default                            |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------|------------------------------------|
+| `visible`       | Open/close widget                                                                                                                                              | boolean  | yes                                                                               | false                              |
+| `clientId`      | Your client id from epay                                                                                                                                       | string   | yes, if `oauthData` is not specified. No, if `oauthData` is specified             |                                    |
+| `clientSecret`  | Your client secret from epay                                                                                                                                   | string   | yes, if `oauthData` is not specified. No, if `oauthData` is specified             |                                    |
+| `terminalId`    | Your terminal id from epay, which terminal you want to use                                                                                                     | string   | yes                                                                               |                                    |
+| `amount`        | amount of money, cost                                                                                                                                          | number   | yes                                                                               |                                    |
+| `invoiceId`     | Your invoice id                                                                                                                                                | string   | no                                                                                | `'' + new Date().valueOf()`        |
+| `onWidgetClose` | callback, which calls when widget closes. Accepts as a parameter object `{success: boolean}`.  Weather of `success` based on the results of payment processing | function | no                                                                                | `function ({success: boolean}) {}` |
+| `devMode`       | There is two modes: dev and prod. If you use `devMode` you will work in a development environtment                                                             | boolean  | no                                                                                | false                              |
+| `paymentData`   | List of payment parameters from [official documentation](https://epayment.kz/docs/platezhnyi-vidzhet) | object   | no, if you specify this object it will be priority                                | `{}`                               |
+| `oauthData`     | Your client id from epay                                                                                                                                       | object   | yes, if `clientId` and `clientSecret` is not specified. No, if they are specified |                                    |
+
+*If you need to get oauth object from backend, you can get that object from backend and pass it to the `oauthData` prop*
 
 ### paymentData
 
@@ -72,4 +76,4 @@ If you specify the properties of this object, it will be priority than above pro
 
 ## License
 
-Widget is [MIT licensed](./LICENSE).
+[MIT](./LICENSE)

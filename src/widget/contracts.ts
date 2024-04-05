@@ -19,10 +19,8 @@ export interface PaymentData {
     data?: string
 }
 
-export interface EpayPaymentWidgetProps {
+interface CommonWidgetProps {
     visible: boolean
-    clientId: string
-    clientSecret: string
     terminalId: string
     amount: number
     paymentData?: PaymentData
@@ -31,3 +29,16 @@ export interface EpayPaymentWidgetProps {
     onWidgetClose?: (result: EventMessageProp) => void
     devMode?: boolean
 }
+
+type ConditionalWidgetProps =
+    | {
+    clientId: string
+    clientSecret: string
+    oauthData?: never
+} | {
+    oauthData: any
+    clientId?: never
+    clientSecret?: never
+}
+
+export type EpayPaymentWidgetProps = CommonWidgetProps & ConditionalWidgetProps
