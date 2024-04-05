@@ -1,6 +1,6 @@
 {
   "name": "epay-payment-widget",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Payment widget of epay, Halyk bank's online payment service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,5 +36,9 @@
     "epayment.kz",
     "ecommerce",
     "widget"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azamat96/epay-payment-widget.git"
+  }
 }
